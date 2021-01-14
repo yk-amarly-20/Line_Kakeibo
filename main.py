@@ -14,14 +14,14 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage
 )
 from linebot.models.messages import Message
-import settings
+# import settings
 
 app = Flask(__name__)
 
-CHANNEL_ACSESS_TOEKEN = settings.CHANNEL_ACCESS_TOKEN
-CHANNEL_SECRET = settings.CHANNEL_SECRET
 
-line_bot_api = LineBotApi(CHANNEL_ACSESS_TOEKEN)
+CHANNEL_ACCESS_TOKEN = os.environ["CHANNEL_ACCESS_TOKEN"]
+CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
+line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
 @app.route("/")
@@ -53,4 +53,5 @@ def handle_message(event):
     )
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.getenv("PORT"))
+    app.run(host="0.0.0.0", port=port)
