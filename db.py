@@ -19,14 +19,15 @@ def get_connection():
     return con
 
 def create_table(table_name: str) -> None:
-    con = get_connection()
-    cur = con.cursor()
 
-    cur.execute("CREATE TABLE IF NOT EXISTS {} (id serial primary key, year int, \
-                month int, day int, catrgory text, created_at timestamp)".format(table_name))
+    with get_connection() as con:
+        with con.cursor() as cur:
+            cur.execute("CREATE TABLE IF NOT EXISTS {} (id serial primary key, money int, \
+                        day int, catrgory text, created_at timestamp)".format(table_name))
+
 
 def drop_table(table_name: str) -> None:
-    con = get_connection()
-    cur = con.cursor()
 
-    cur.execute("DROP TABLE IF EXISTS {}".format(table_name))
+    with get_connection() as con:
+        with con.cursor() as cur:
+            cur.execute("DROP TABLE IF EXISTS {}".format(table_name))
