@@ -1,9 +1,6 @@
-from logging import Handler
-import dotenv
 from flask import Flask, request, abort
 import os
 from os.path import join, dirname
-from dotenv import load_dotenv
 from linebot import (
     LineBotApi, WebhookHandler
 )
