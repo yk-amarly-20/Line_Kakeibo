@@ -5,7 +5,8 @@ import os
 import sys
 
 def get_url() ->  str:
-    url = os.get_env('DATABASE_URL', None)
+    # url = os.getenv("DATABASE_URL", None)
+    url = os.environ["DATABASE_URL"]
     if url is None:
         print("must set DATABASE URL")
         sys.exit(1)
