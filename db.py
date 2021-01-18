@@ -32,3 +32,10 @@ def drop_table(table_name: str) -> None:
     with get_connection() as con:
         with con.cursor() as cur:
             cur.execute("DROP TABLE IF EXISTS {}".format(table_name))
+
+def insert_data(category: str, table_name: str, money: int, day: int) -> None:
+
+    with get_connection() as con:
+        with con.cursor() as cur:
+            cur.execute("INSERT INTO {} (money, day, category) \
+                        VALUES ({}, {}, {})".format(table_name, money, day, category))
