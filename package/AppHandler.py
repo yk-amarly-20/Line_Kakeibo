@@ -3,15 +3,19 @@ from linebot import (
     LineBotApi, WebhookHandler
 )
 from linebot.models import MessageEvent
+from linebot.models.send_messages import TextSendMessage
 from package import reply
 
 
-def TextMessage(event):
-    message = event.message.text
+def TextMessage(event: MessageEvent):
+    message: str = event.message.text
 
     if message == "Yes":
-        reply.reply_message(event, "いいね")
+        reply_message = TextSendMessage(text="いいね")
+        reply.reply_message(event, reply_message)
     elif message == "No":
-        reply.reply_message(event, "いいえ")
+        reply_message = TextSendMessage(text="いいえ")
+        reply.reply_message(event, reply_message)
     else:
-        reply.reply_message(event, message)
+        reply_message = TextSendMessage(text=message)
+        reply.reply_message(event, reply_message)
