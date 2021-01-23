@@ -6,7 +6,7 @@ from linebot.models import MessageEvent
 from package import reply
 
 
-def TextMessage(event: MessageEvent):
+def TextMessage(event):
     message = event.message.text
 
     if message == "Yes":
