@@ -12,6 +12,6 @@ handler = WebhookHandler(CHANNEL_SECRET)
 
 def reply_message(event, message):
     line_bot_api.reply_message(
-        event.relpy_token,
+        event.reply_token,
         message
     )
