@@ -14,7 +14,8 @@ from linebot.models import (
 )
 from linebot.models.messages import Message
 # import settings
-from package import config, reply, AppHandler
+# from package import config, reply, AppHandler
+from package import AppHandler
 from package.rich_menu import createRichMenu
 
 app = Flask(__name__)
