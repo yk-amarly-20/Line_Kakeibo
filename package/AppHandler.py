@@ -4,15 +4,16 @@ from linebot import (
 )
 from linebot.models import MessageEvent
 from linebot.models.send_messages import TextSendMessage
-from package import reply
+from package import reply, config, rich_menu
 
-
-def TextMessage(event: MessageEvent):
+# とりあえずテスト用
+def TextMessage(line_bot_api: LineBotApi, event: MessageEvent):
     message: str = event.message.text
 
-    if message == "Yes":
-        reply_message = TextSendMessage(text="いいね")
-        reply.reply_message(event, reply_message)
+    if message == config.MENU:
+        # reply_message = TextSendMessage(text="いいね")
+        # reply.reply_message(event, reply_message)
+        rich_menu.createRichMenu(line_bot_api)
     elif message == "No":
         reply_message = TextSendMessage(text="いいえ")
         reply.reply_message(event, reply_message)

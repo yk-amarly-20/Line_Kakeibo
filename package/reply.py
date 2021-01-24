@@ -12,7 +12,7 @@ CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
-def reply_message(event: MessageEvent, message: TextSendMessage):
+def reply_message(event: MessageEvent, message: TextSendMessage) -> None:
     line_bot_api.reply_message(
         event.reply_token,
         message
