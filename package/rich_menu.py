@@ -30,7 +30,7 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
         path = "../images/test.jpg"
 
         with open(path, "rb") as f:
-            line_bot_api.set_rich_menu_image(richMenuId, "image/jpeg", f)
+            line_bot_api.set_rich_menu_image(richMenuId, "image/jpg", f)
 
         line_bot_api.set_default_rich_menu(richMenuId)
 
