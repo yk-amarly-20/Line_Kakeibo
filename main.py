@@ -66,7 +66,7 @@ def handle_message(event):
         TextSendMessage(text=event.message.text)
     )
     """
-    AppHandler.TextMessage(event)
+    AppHandler.TextMessage(line_bot_api, event)
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
