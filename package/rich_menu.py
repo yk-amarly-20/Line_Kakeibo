@@ -1,9 +1,11 @@
+import os
 from linebot.models import (
     RichMenu, RichMenuSize, RichMenuArea, RichMenuBounds,
     MessageAction
 )
 from linebot import LineBotApi
-from package import config
+from linebot.models.send_messages import TextSendMessage
+from package import config, reply
 
 def createRichMenu(line_bot_api: LineBotApi) -> bool:
     result = False
@@ -29,8 +31,12 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
 
         path = "../images/test.jpg"
 
-        with open(path, "rb") as f:
-            line_bot_api.set_rich_menu_image(richMenuId, "image/jpg", f)
+        if os.path.exists(path):
+            with open(path, "rb") as f:
+                line_bot_api.set_rich_menu_image(richMenuId, "image/jpg", f)
+        else:
+            reply_message = TextSendMessage(text="画像が存在しません")
+            reply.reply_message(reply_message)
 
         line_bot_api.set_default_rich_menu(richMenuId)
 
