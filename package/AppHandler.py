@@ -13,7 +13,10 @@ def TextMessage(line_bot_api: LineBotApi, event: MessageEvent):
     if message == config.MENU:
         # reply_message = TextSendMessage(text="いいね")
         # reply.reply_message(event, reply_message)
-        rich_menu.createRichMenu(line_bot_api)
+        result = rich_menu.createRichMenu(line_bot_api)
+        if not result:
+            reply_message = TextSendMessage(text="リッチメニューを表示できません")
+            reply.reply_message(event, reply_message)
     elif message == "No":
         reply_message = TextSendMessage(text="いいえ")
         reply.reply_message(event, reply_message)
