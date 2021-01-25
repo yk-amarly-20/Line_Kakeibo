@@ -16,7 +16,7 @@ from linebot.models.messages import Message
 # import settings
 # from package import config, reply, AppHandler
 from package import AppHandler
-from package.rich_menu import createRichMenu
+# from package.rich_menu import createRichMenu
 
 app = Flask(__name__)
 
@@ -66,7 +66,7 @@ def handle_message(event):
         TextSendMessage(text=event.message.text)
     )
     """
-    AppHandler.TextMessage(event)
+    AppHandler.TextMessage(line_bot_api, event)
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
