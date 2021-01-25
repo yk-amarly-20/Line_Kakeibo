@@ -42,7 +42,12 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
 
         result = True
 
-    except Exception:
+    except Exception as e:
         result = False
+        print("======error context======")
+        print("type: {}", str(type(e)))
+        print("args: {}", str(e.args))
+        print("message: {}", e.message)
+        print("e: {}", str(e))
 
     return result
