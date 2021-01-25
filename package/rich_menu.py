@@ -35,8 +35,7 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
             with open(path, "rb") as f:
                 line_bot_api.set_rich_menu_image(richMenuId, "image/jpg", f)
         else:
-            reply_message = TextSendMessage(text="画像が存在しません")
-            reply.reply_message(reply_message)
+            print("画像がありません")
 
         line_bot_api.set_default_rich_menu(richMenuId)
 
