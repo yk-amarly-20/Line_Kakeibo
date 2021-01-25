@@ -29,7 +29,7 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
 
         richMenuId = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
 
-        path = "../images/test.jpg"
+        path = "images/test.jpg"
 
         if os.path.exists(path):
             with open(path, "rb") as f:
