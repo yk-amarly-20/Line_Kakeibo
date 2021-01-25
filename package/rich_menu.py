@@ -33,7 +33,7 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
 
         if os.path.exists(path):
             with open(path, "rb") as f:
-                line_bot_api.set_rich_menu_image(richMenuId, "image/jpg", f)
+                line_bot_api.set_rich_menu_image(richMenuId, "image/jpeg", f)
         else:
             print("画像がありません")
 
