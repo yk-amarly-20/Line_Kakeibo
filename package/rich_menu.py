@@ -17,15 +17,15 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
             chat_bar_text = "TAP HERE",
             areas = [
                 RichMenuArea(
-                    bounds=RichMenuBounds(x=0, y=0, width=480, height=405),
+                    bounds=RichMenuBounds(x=0, y=0, width=320, height=405),
                     action=MessageAction(text=config.RESISTER)
                 ),
                 RichMenuArea(
-                    bounds=RichMenuBounds(x=480, y=0, width=480, height=405),
+                    bounds=RichMenuBounds(x=480, y=0, width=320, height=405),
                     action=MessageAction(text=config.BROWSE)
                 ),
                 RichMenuArea(
-                    bounds=RichMenuBounds(x=480, y=0, width=480, height=405),
+                    bounds=RichMenuBounds(x=480, y=0, width=320, height=405),
                     action=MessageAction(text=config.MODIFY)
                 )
             ]
