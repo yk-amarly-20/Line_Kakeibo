@@ -21,11 +21,11 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
                     action=MessageAction(text=config.RESISTER)
                 ),
                 RichMenuArea(
-                    bounds=RichMenuBounds(x=480, y=0, width=320, height=405),
+                    bounds=RichMenuBounds(x=320, y=0, width=320, height=405),
                     action=MessageAction(text=config.BROWSE)
                 ),
                 RichMenuArea(
-                    bounds=RichMenuBounds(x=480, y=0, width=320, height=405),
+                    bounds=RichMenuBounds(x=640, y=0, width=320, height=405),
                     action=MessageAction(text=config.MODIFY)
                 )
             ]
