@@ -17,19 +17,23 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
             chat_bar_text = "TAP HERE",
             areas = [
                 RichMenuArea(
-                    bounds=RichMenuBounds(x=0, y=0, width=480, height=405),
+                    bounds=RichMenuBounds(x=0, y=0, width=320, height=405),
                     action=MessageAction(text=config.RESISTER)
                 ),
                 RichMenuArea(
-                    bounds=RichMenuBounds(x=480, y=0, width=480, height=405),
+                    bounds=RichMenuBounds(x=320, y=0, width=320, height=405),
                     action=MessageAction(text=config.BROWSE)
+                ),
+                RichMenuArea(
+                    bounds=RichMenuBounds(x=640, y=0, width=320, height=405),
+                    action=MessageAction(text=config.MODIFY)
                 )
             ]
         )
 
         richMenuId = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
 
-        path = "images/test.jpg"
+        path = "images/rich_menu_v1.png"
 
         if os.path.exists(path):
             with open(path, "rb") as f:
