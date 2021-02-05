@@ -1,7 +1,7 @@
 import os
 from linebot.models import (
     RichMenu, RichMenuSize, RichMenuArea, RichMenuBounds,
-    MessageAction
+    MessageAction, URIAction
 )
 from linebot import LineBotApi
 from linebot.models.send_messages import TextSendMessage
@@ -18,7 +18,7 @@ def createRichMenu(line_bot_api: LineBotApi) -> bool:
             areas = [
                 RichMenuArea(
                     bounds=RichMenuBounds(x=0, y=0, width=320, height=405),
-                    action=MessageAction(text=config.RESISTER)
+                    action=URIAction(label="register", uri="line://app/<LIFF URL>")
                 ),
                 RichMenuArea(
                     bounds=RichMenuBounds(x=320, y=0, width=320, height=405),
