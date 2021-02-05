@@ -1,4 +1,4 @@
-from flask import Flask, request, abort
+from flask import Flask, request, abort, render_template
 import os
 from os.path import join, dirname
 from linebot import (
@@ -10,12 +10,13 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
     RichMenu, RichMenuArea, RichMenuSize, RichMenuBounds,
-    MessageAction, rich_menu
+    MessageAction, rich_menu, PostbackEvent
 )
 from linebot.models.messages import Message
 # import settings
 # from package import config, reply, AppHandler
 from package import AppHandler
+from package.PostbackHandler import PostbackHandler
 # from package.rich_menu import createRichMenu
 
 app = Flask(__name__)
@@ -67,6 +68,20 @@ def handle_message(event):
     )
     """
     AppHandler.TextMessage(line_bot_api, event)
+
+@handler.add(PostbackEvent)
+def on_postback(event):
+
+    return 200
+
+@app.route('/postback', methods=["POST"])
+def postback():
+    PostbackHandler(request.get_data(as_text=True)).handle_event()
+
+
+@app.route("/liff/form")
+def liff():
+    return render_template('form.html'), 200
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))

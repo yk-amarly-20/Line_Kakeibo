@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <titre>form</titre>
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <th>
+                    <div>カテゴリ: </div>
+                </th>
+                <th>
+                    <div><input type="text" placeholder="カテゴリを選択してください。" id="category"></div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div>購入時刻: </div>
+                </th>
+                <th>
+                    <div><input type="date" placeholder="日付を入力してください。" id="date"></div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div>金額: </div>
+                </th>
+                <th>
+                    <div><input type="number" placeholder="金額を入力してください。" id="money"></div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div>備考: </div>
+                </th>
+                <th>
+                    <div><input type="text" id="remarks" placeholder="備考"></div>
+                </th>
+            </tr>
+            <tr>
+                <div><button id="register">登録</button></div>
+            </tr>
+        </table>
+
+        <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            window.onload = function (e) {
+                liff.init(function (data) {
+                    initializeApp(data);
+                });
+            };
+
+            function initializeApp(data) {
+                document.getElementById("category").value = "";
+                document.getElementById("date").value = "";
+                document.getElementById("money").value = "";
+                document.getElementById("remarks").value = "";
+                document.getElementById("register").addEventListener("click", function () {register()});
+            }
+
+            function register() {
+                if (!window.confirm("登録してもよろしいですか？")) {
+                    return
+                }
+
+                const date = new Date();
+                var event = JSON.stringify({
+                    "type": "process",
+                    "data": {
+                        "category": document.getElementById("category").value,
+                        "date": document.getElementById("date").value,
+                        "money": document.getElementById("money").value,
+                        "remarks": document.getElementById("remarks").value
+                    }
+                })
+
+                $.post("https://line-kakeibo.herokuapp.com/postback", event)
+                    .done(function (data) {
+                        window.alert(data);
+                        liff.closeWindow();
+                    })
+                    .fail(function () {
+                        window.alert("Error sending messages: " + error)
+                    })
+            }
+        </script>
+    </body>
+</html>

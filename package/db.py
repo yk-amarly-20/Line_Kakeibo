@@ -19,12 +19,17 @@ def get_connection():
 
     return con
 
+def create_table_name(year: int, month: int) -> str:
+    table_name = "log_" + str(year) + "_" + str(month)
+
+    return table_name
+
 def create_table(table_name: str) -> None:
 
     with get_connection() as con:
         with con.cursor() as cur:
             cur.execute("CREATE TABLE IF NOT EXISTS {} (id serial primary key, money int, \
-                        day int, catrgory text, created_at timestamp)".format(table_name))
+                        day int, category text, remarks text, posted_at timestamp)".format(table_name))
 
 
 def drop_table(table_name: str) -> None:
@@ -33,9 +38,10 @@ def drop_table(table_name: str) -> None:
         with con.cursor() as cur:
             cur.execute("DROP TABLE IF EXISTS {}".format(table_name))
 
-def insert_data(category: str, table_name: str, money: int, day: int) -> None:
+def insert_data(category: str, table_name: str, money: int,
+                day: int, remarks: str) -> None:
 
     with get_connection() as con:
         with con.cursor() as cur:
-            cur.execute("INSERT INTO {} (money, day, category) \
-                        VALUES ({}, {}, {})".format(table_name, money, day, category))
+            cur.execute("INSERT INTO {} (money, day, category, remarks) \
+                        VALUES ({}, {}, {}, {})".format(table_name, money, day, category, remarks))
